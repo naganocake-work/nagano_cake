@@ -34,26 +34,27 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
 
   
   namespace :admin do
-    get 'orders/show'
+    resources :orders, only: [:update, :show]
+    
   end
   namespace :admin do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
+    resources :customers, only: [:update, :show, :index, :edit]
   end
   namespace :admin do
-    get 'genres/index'
-    get 'genres/edit'
+    resources :genres, only: [:update, :create, :index, :edit]
   end
   namespace :admin do
-    get 'items/index'
-    get 'items/new'
-    get 'items/show'
-    get 'items/edit'
+     resources :items, only: [:update, :create, :index, :edit, :show ,:new]
+    
   end
   namespace :admin do
-    get 'homes/home'
-    get 'homes/about'
+    get '/' => 'homes#top'
+    
+  end
+  
+  namespace :admin do
+    resources :order_details, only: [:update]
+    
   end
   
   root to: "public/homes#top"
