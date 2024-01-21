@@ -17,7 +17,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
   get 'customers/information/edit' => "public/customers#edit", as: "information_edit"
   patch 'customers/information' => "public/customers#udate"
   get  'customers/confirm' => "public/customers#confirm", as: "customers_confirm"
-  patch 'customers/disable' => "public/customers#disable", as: "disable"
+  patch '/customers/disable' => "public/customers#disable", as: "disable"
   
   # cart_items
   resources :cart_items, only: [:index, :update, :destroy, :create]

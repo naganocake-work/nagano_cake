@@ -1,2 +1,7 @@
-<h1>Admin::Genres#index</h1>
-<p>Find me in app/views/admin/genres/index.html.erb</p>
+<h3>ジャンル名・追加</h3>
+
+<%= form_with model: @genre, method: :post do |f| %>
+<p>ジャンル名    <%= f.text_field :name, placeholder: "ジャンル名" %></p>
+<%= f.submit '新規登録' %>
+
+<% end %>
