@@ -1,3 +1,5 @@
+
+<div class="main">
 <h3>ジャンル名・追加</h3>
 
 <%= form_with model: @genre, method: :post do |f| %>
@@ -5,3 +7,36 @@
 <%= f.submit '新規登録' %>
 
 <% end %>
+
+<table>
+
+    <thead>
+
+      <tr>
+
+        <th>ジャンル</th>
+
+      </tr>
+
+    </thead>
+
+    <% @genres.each do |genre| %>
+
+    <tbody>
+
+      <tr>
+
+        <td><%= genre.name %></td>
+
+        <td><%= link_to "編集する",  edit_admin_genre_path(genre.id) %></td>
+
+      </tr>
+
+    </tbody>
+
+    <% end %>
+
+</table>
+
+
+</div>

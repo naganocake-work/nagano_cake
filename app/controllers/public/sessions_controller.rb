@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 class Public::SessionsController < Devise::SessionsController
-    
+
  before_action :customer_state, only: [:create]
- 
+
   private
 # アクティブであるかを判断するメソッド
 def customer_state
@@ -13,15 +13,15 @@ def customer_state
   return if customer.nil?
   # 【処理内容3】 取得したアカウントのパスワードと入力されたパスワードが一致していない場合、このメソッドを終了する
   return unless customer.valid_password?(params[:customer][:password])
-  
+
   if customer.is_active
    return
   else
-      
+
   redirect_to  new_customer_registration_path
-  
+
   end
-  
+
 end
   # GET /resource/sign_in
   # def new
