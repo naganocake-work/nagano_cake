@@ -1,3 +1,4 @@
+<%= render 'admin/customers/list', admins: @admins %>
 <h3>商品新規登録</h3>
 <% if @errors %>
   <ul>
@@ -30,10 +31,10 @@
 
 <p>販売ステータス</p>
 
-<%= f.radio_button :is_sale, true %>
-<%= f.label :is_sale_true, "販売中" %>
-<%= f.radio_button :is_sale, false %>
-<%= f.label :is_sale_false, "販売停止中" %>
+<%= f.radio_button :is_active, true %>
+<%= f.label :is_active_true, "販売中" %>
+<%= f.radio_button :is_active, false %>
+<%= f.label :is_active_false, "販売停止中" %>
 
 <%= f.submit "新規登録" %>
 

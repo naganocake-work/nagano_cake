@@ -1,3 +1,4 @@
+<%= render 'admin/customers/list', admins: @admins %>
 <h3>商品一覧</h3>
 
 <table>
@@ -16,17 +17,17 @@
 
   </thead>
 
-  <%= @items.each do |item| %>
+  <% @items.each do |item| %>
 
   <tbody>
 
     <tr>
 
       <td><%= item.id %></td>
-      <td><%= item.name %></td>
-      <td><%= item.price %></td>
-      <td><%= item.genre.namei%></td>
-      <td><%= item.is_sale %></td>
+      <td><%= link_to item.name, admin_item_path(item) %></td>
+      <td><%= item.price %>円</td>
+      <td><%= item.genre.name %></td>
+      <td><%= item.is_active ? "販売中" : "販売停止中" %></td>
 
     </tr>
 
@@ -34,14 +35,7 @@
 
   <% end %>
 
-
-
-
-
-
-
-
-
+<%= paginate @items %>
 
 
 </table>

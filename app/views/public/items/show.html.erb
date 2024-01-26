@@ -1,2 +1,19 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<%= render 'public/customers/list', customers: @customers %>
+<table>
+  <tbody>
+    <tr>
+<% @genres.each do |genre| %>
+
+  <td><%= link_to genre.name, items_path(genre_name: genre.name) %></td>
+
+<% end %>
+    </tr>
+  </tbody>
+</table>
+<%= image_tag @item.get_image(100,100) %>
+
+<%= @item.introduction %>
+
+￥<%= @item.price * 1.1 %>(税込)
+
+<%= %>

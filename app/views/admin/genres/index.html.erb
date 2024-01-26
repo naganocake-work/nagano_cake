@@ -2,8 +2,10 @@
 <div class="main">
 <h3>ジャンル名・追加</h3>
 
-<%= form_with model: @genre, method: :post do |f| %>
+<%= form_with model: @genre,url: admin_genres_path, method: :post do |f| %>
+
 <p>ジャンル名    <%= f.text_field :name, placeholder: "ジャンル名" %></p>
+
 <%= f.submit '新規登録' %>
 
 <% end %>
