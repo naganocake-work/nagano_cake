@@ -1,0 +1,18 @@
+<%= render 'public/customers/list', customers: @customers %>
+<h3>商品一覧</h3>
+<label>(全件)</label>
+
+
+
+<% @items.each do |item| %> 
+
+<%= link_to item_path(item.id) do %>
+<%= image_tag item.get_image(100,100) %>
+<% end %>
+<%= item.name %>
+
+￥<%= item.price %>
+
+<% end %>
+
+<%= paginate @items %>
