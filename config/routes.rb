@@ -36,7 +36,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
   
   # adresses
 
-  resources :adresses, only: [:edit, :index, :create, :update, :destroy], module: 'public'
+  resources :addresses, only: [:edit, :index, :create, :update, :destroy], module: 'public'
 
   
   namespace :admin do
