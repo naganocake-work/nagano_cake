@@ -27,16 +27,16 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
   delete '/cart_items' => "public/cart_items#destroy_all"
   
   # oders
-  
+  post 'orders/confirm' => "public/orders#confirm", as: "confirm"
+  post 'orders/decision' => "public/orders#decision", as: "decision"
+  get 'orders/complete' => "public/orders#complete", as: "complete"
   resources :orders, only: [:show, :index, :new], module: 'public'
   
-  post 'orders/confirm' => "public/orders#confirm"
-  post 'orders/decision' => "public/orders#decision"
-  get 'orders/complete' => "public/orders#complete", as: "complete"
+
   
   # adresses
 
-  resources :adresses, only: [:edit, :index, :create, :update, :destroy], module: 'public'
+  resources :addresses, only: [:edit, :index, :create, :update, :destroy], module: 'public'
 
   
   namespace :admin do

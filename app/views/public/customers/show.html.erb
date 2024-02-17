@@ -1,3 +1,4 @@
+<%= render 'public/customers/list', customers: @customers %>
 
 <h3>マイページ</h3>
 
@@ -43,3 +44,5 @@
 	</tbody>
 
 </table>
+
+<%= link_to "注文履歴一覧" , orders_path(current_customer) %>

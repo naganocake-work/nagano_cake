@@ -9,4 +9,14 @@ class Customer < ApplicationRecord
     validates :postal_code, format: { with: /\A\d{7}\z/, message: "はハイフンなしの7桁の数字で入力してください" }
     validates :telephone_number, format: { with: /\A\d+\z/, message: "は半角数字のみで入力してください" }
 
+  has_many :addresses, dependent: :destroy
+  has_many :orders, dependent: :destroy
+  has_many :cart_items, dependent: :destroy
+  
+  def customer_address
+    
+    '〒' + postal_code + ' ' + address + ' ' + last_name + first_name
+    
+  end  
+  
 end
