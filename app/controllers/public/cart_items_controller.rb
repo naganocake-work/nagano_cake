@@ -2,7 +2,7 @@ class Public::CartItemsController < ApplicationController
   before_action :authenticate_customer!
   def index
     
-    @cart_items = CartItem.all
+    @cart_items = current_customer.cart_items.all
     @cart_item = CartItem.new
     
   end
@@ -11,7 +11,7 @@ class Public::CartItemsController < ApplicationController
     
   @cart_item = CartItem.new(cart_item_params)  
   @cart_item.customer_id = current_customer.id
-  if CartItem.find_by(item_id: params[:cart_item][:item_id]).present?
+  if current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id]).present?
     
       @cart_item = CartItem.find_by(item_id: params[:cart_item][:item_id])
       
@@ -34,7 +34,7 @@ class Public::CartItemsController < ApplicationController
   
   def update
     
-    @cart_item = CartItem.find(params[:id])
+    @cart_item = current_customer.cart_items.find(params[:id])
     
     @cart_item.update(cart_item_params)
     
@@ -54,7 +54,7 @@ class Public::CartItemsController < ApplicationController
   
   def destroy_all
 
-    cart_item = CartItem.all
+    cart_item = current_customer.cart_items.all
     
     cart_item.destroy_all
     
