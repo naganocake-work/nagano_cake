@@ -14,12 +14,13 @@ def create
   if @address.save
     redirect_to addresses_path
   else
-    @addresses = Address.all
+    @addresses = current_customer.addresses.all
+    @errors = @address.errors.full_messages
     render :index 
   end
 end
   
-  def destoroy
+  def destroy
     
     address = Address.find(params[:id])
     

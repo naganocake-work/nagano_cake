@@ -1,26 +1,77 @@
 <%= render 'public/customers/list', customers: @customers %>
-<h3>配送先/一覧</h3>
+
 <%= form_with model: @address do |f| %> 
 
-<div>
-<%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
-<%= f.text_field :postal_code, maxlength: 7, pattern: "\\d*" %>
-</div>
+<div class="container">
 
-<div>
+  <h3 class="col-3 my-5">配送先編集</h3>
   
-  <%= f.label:address_area, "住所" %>
-  <%= f.text_field :address_area %>
+  <div class="row">
   
-</div>  
+    <% if @address.errors.any? %>
+        
+          <div>
+            
+            <h2><%= @address.errors.count %> error prohibited this obj from being saved:</h2>
+            
+            <ul>
+              
+              <% @address.errors.full_messages.each do |message| %>
+              
+                <li><%= message %></li>
+                
+              <% end %>
+              
+            </ul>
+            
+          </div>
+          
+          <% end %>
+    
+    
+    <div class="col-md-2">
+      
+      <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
+    </div>
+    
+    <div class="col-md-10">
+      
+      <%= f.text_field :postal_code, maxlength: 7, pattern: "\\d*" %>
+    
+    </div>
+    
+    <div class="col-md-2">
+      
+      <%= f.label:address_area, "住所" %>
+      
+    </div>   
+    
+    <div class="col-md-10">
+      
+      <%= f.text_field :address_area %>
+      
+    </div>  
+    
+    <div class="col-md-2">
+      
+      <%= f.label:addressee_name, "宛名" %>
+      
+    </div>  
+    
+    <div class="col-md-3">
+    
+      <%= f.text_field :addressee_name %>
+      
+    </div>
+    
+    <div class="col-md-6">
+      
+      <%= f.submit "変更内容を保存", class: "btn btn-success" %>
+      
+    </div>
+    
+  </div>  
 
-<div>
-  
-  <%= f.label:addressee_name, "宛名" %>
-  <%= f.text_field :addressee_name %>
-  
-</div>
-
-<%= f.submit "変更内容を保存" %>
+</div> 
 
 <% end %>
