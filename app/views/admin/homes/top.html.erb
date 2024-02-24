@@ -1,49 +1,70 @@
 <%= render 'admin/customers/list', admins: @admins %>
-<h3>注文履歴一覧</h3>
 
-<table>
-  
-  <thead>
+<div class="container">
     
-    <tr>
-      
-      <th>購入日時</th>
-      <th>購入者</th>
-      <th>注文個数</th>
-      <th>注文ステータス</th>
-      
-    </tr>
-    
-  </thead>
+  <h3 class="col-3 my-3">注文履歴一覧</h3>
   
-  <% @orders.each do |order| %>
+  <div class="row">
   
-  <tbody>
-    
-    <tr>
+    <table class="table table-hover table-bordered col-md-12 mt-3">
       
-      <td>
-        <%= link_to admin_order_path(order) do %>
+      <thead>
         
-        <%= order.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+        <tr class="table-active">
+          
+          <th>購入日時</th>
+          <th>購入者</th>
+          <th>注文個数</th>
+          <th>注文ステータス</th>
+          
+        </tr>
         
-        <% end %>
-      </td>
-      <td><%= order.addressee_name %></td>
+      </thead>
       
-      <% total_number = 0 %>
+      <% @orders.each do |order| %>
       
-      <% order.order_details.each do |order_detail| %>
-      
-      <% total_number += order_detail.quantity %>
+      <tbody>
+        
+        <tr>
+          
+          <td>
+            <%= link_to admin_order_path(order) do %>
+            
+            <%= order.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+            
+            <% end %>
+          </td>
+          <td><%= order.addressee_name %></td>
+          
+          <% total_number = 0 %>
+          
+          <% order.order_details.each do |order_detail| %>
+          
+          <% total_number += order_detail.quantity %>
+          
+          <% end %>
+          
+          <td><%= total_number %></td>
+          <td><%= order.order_status %></td>
+          
+        </tr>
+        
+      </tbody>
       
       <% end %>
       
-      <td><%= total_number %></td>
-      <td><%= order.order_status %></td>
-      
-    </tr>
+    </table>
     
-  </tbody>
-  <% end %>
-</table>
+    <div class="row col-md-12">
+      
+      <div class="col-md-7 offset-5">
+        
+        <%= paginate @orders %>
+        
+      </div>
+    
+    </div>
+  
+  </div>
+
+</div>

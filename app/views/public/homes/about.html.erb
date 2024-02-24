@@ -1,22 +1,20 @@
-<div class="header row px-3 py-4">
-      <div class="col-2">
-        <div class="logo">logo</div>
-      </div>
-      <div class="col-6 offset-4">
-        <div class="row">
-          <div class="col-3">
-            <!-- colクラスがpaddingを左右に持っているため、div子要素を作成し背景色を付けてpaddingに背景色がつくことを避ける -->
-            <div class="header-content">menu1</div>
-          </div>
-          <div class="col-3">
-            <div class="header-content">menu2</div>
-          </div>
-          <div class="col-3">
-            <div class="header-content">menu3</div>
-          </div>
-          <div class="col-3">
-            <div class="header-content">menu4</div>
-          </div>
-        </div>
-      </div>
-    </div>
+<%= render 'public/customers/list', customers: @customers %>
+
+<div class="container justify-content-center text-center">
+  
+  
+<h1>About</h1>
+
+<p class="mt-5">
+  
+  ながのCAKEは全国発送可能なケーキ屋さんです。</br>
+  お子様からお年寄りの方までお召し上がりいただけるよう、</br>
+  様々バリエーションをご用意しております。</br>
+  また、全国へ発送可能ですので「いつ」でも「どこ」でもご注文いただけます。</br>
+  ぜひご注文下さい。
+  
+</p>
+
+
+
+</div>

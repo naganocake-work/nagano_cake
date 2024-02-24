@@ -1,11 +1,32 @@
+<%= render 'public/customers/list', customers: @customers %>
 
-<div>
-  a
+<div class="container -he text-center">
+
+  <p class="col-md-12 font-weight-bold mb-3">本当に退会しますか？</p>
+  
+  <p class="col-md-12">
+    
+    退会すると、会員情報や</br>
+    これまでの購入履歴の閲覧ができなくなります。</br>
+    退会する場合は、「退会する」をクリックしてください。
+    
+  </p>
+  
+  <div class="row col-md-12">
+    
+    <div class="col-md-6 text-right">
+      
+      <%= link_to "退会しない", my_page_path(current_customer), class: "btn btn-primary" %>
+    
+    </div>
+  
+    <div class="col-md-6 text-left">
+      
+      <%= link_to "退会する", disable_path, method: :patch, data: { confirm: "本当に退会しますか？" }, class: "btn btn-danger" %>
+    
+    </div>
+  
+  </div>
+  
+
 </div>
-<div>
-  a
-</div>
-<div>
-  a
-</div>
-<%= link_to "退会する", disable_path, method: :patch, data: { confirm: "本当に退会しますか？" } %>

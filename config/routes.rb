@@ -16,7 +16,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
   # customers
   get 'customers/my_page' => "public/customers#show", as: "my_page"
   get 'customers/information/edit' => "public/customers#edit", as: "information_edit"
-  patch 'customers/information' => "public/customers#udate"
+  patch 'customers/information' => "public/customers#update"
   get  'customers/confirm' => "public/customers#confirm", as: "customers_confirm"
   patch '/customers/disable' => "public/customers#disable", as: "disable"
   
@@ -27,13 +27,14 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
   delete '/cart_items' => "public/cart_items#destroy_all"
   
   # oders
-  post 'orders/confirm' => "public/orders#confirm", as: "confirm"
-  post 'orders/decision' => "public/orders#decision", as: "decision"
-  get 'orders/complete' => "public/orders#complete", as: "complete"
-  resources :orders, only: [:show, :index, :new], module: 'public'
   
-
-  
+   get 'orders/confirm' => "public/orders#error" 
+   get 'orders/complete' => "public/orders#complete", as: "complete"
+   resources :orders, only: [:show, :index, :new], module: 'public'
+   post 'orders/confirm' => "public/orders#confirm", as: "confirm"
+   post 'orders/decision' => "public/orders#decision", as: "decision"
+   
+   
   # adresses
 
   resources :addresses, only: [:edit, :index, :create, :update, :destroy], module: 'public'

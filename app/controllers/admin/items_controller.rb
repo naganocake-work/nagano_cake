@@ -10,6 +10,7 @@ class Admin::ItemsController < ApplicationController
     else
 
      @items = Item.page(params[:page])
+     
     end
 
   end

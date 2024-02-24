@@ -1,86 +1,109 @@
 <%= render 'public/customers/list', customers: @customers %>
-<h3>配送先/一覧</h3>
+<%= form_with model: @address,url: addresses_path, method: :post do  |f| %> 
+<div class="container">
 
+  <h3 class="col-3 my-5">配送先/一覧</h3>
+  
+   <% if @errors %>
 
-<% if @address.errors.any? %>
-    
-      <div>
-        
-        <h2><%= @address.errors.count %> error prohibited this obj from being saved:</h2>
-        
         <ul>
-          
-          <% @address.errors.full_messages.each do |message| %>
-          
-            <li><%= message %></li>
-            
+
+          <% @errors.each do |error| %>
+
+            <li><%= error %></li>
+
           <% end %>
-          
+
         </ul>
         
-      </div>
+  <% end %>
+    
+  <div class="row">
+  
+ 
+    
+    <div class="col-md-2">
+      
+      <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
+    </div>
+    
+    <div class="col-md-10">
+      
+      <%= f.text_field :postal_code, maxlength: 7, pattern: "\\d*" %>
+    
+    </div>
+    
+    <div class="col-md-2">
+      
+      <%= f.label:address_area, "住所" %>
+      
+    </div>   
+    
+    <div class="col-md-10">
+      
+      <%= f.text_field :address_area %>
+      
+    </div>  
+    
+    <div class="col-md-2">
+      
+      <%= f.label:addressee_name, "宛名" %>
+      
+    </div>  
+    
+    <div class="col-md-3">
+    
+      <%= f.text_field :addressee_name %>
+      
+    </div>
+    
+    <div class="col-md-6">
+      
+      <%= f.submit "新規登録", class: "btn btn-success" %>
+      
+    </div>
+  
+    
+    <table class="table table-hover table-bordered col-md-6 mt-3">
+    
+    <thead>
+      
+      <tr class="table-active">
+        
+        <th>郵便番号</th>
+        <th>住所</th>
+        <th>宛名</th>
+        <th></th>
+        
+      </tr>
+      
+    </thead>
+      
+      <% @addresses.each do |name| %>
+      
+      <tbody>
+        
+        <tr>
+          
+          <td><%= name.postal_code %></td>
+          <td><%= name.address_area %></td>
+          <td><%= name.addressee_name %></td>
+          <td class="text-center">
+          <%= link_to "編集する", edit_address_path(name), class: "btn btn-success mr-2" %>  
+          <%= link_to "削除する", addresses_path(name),method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-danger" %>
+            
+          </td>
+          
+        </tr>
+        
+      </tbody>
       
       <% end %>
-
-<%= form_with model: @address,url: addresses_path, method: :post do  |f| %> 
-
-<div>
-<%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
-<%= f.text_field :postal_code, maxlength: 7, pattern: "\\d*" %>
+      
+    </table>
+  
+  </div>
+    
 </div>
-
-<div>
-  
-  <%= f.label:address_area, "住所" %>
-  <%= f.text_field :address_area %>
-  
-</div>  
-
-<div>
-  
-  <%= f.label:addressee_name, "宛名" %>
-  <%= f.text_field :addressee_name %>
-  
-</div>
-
-<%= f.submit "新規登録" %>
 
 <% end %>
-
-<table>
-
-<thead>
-  
-  <tr>
-    
-    <th>郵便番号</th>
-    <th>住所</th>
-    <th>宛名</th>
-    <th></th>
-    
-  </tr>
-  
-</thead>
-  
-  <% @addresses.each do |name| %>
-  
-  <tbody>
-    
-    <tr>
-      
-      <td><%= name.postal_code %></td>
-      <td><%= name.address_area %></td>
-      <td><%= name.addressee_name %></td>
-      <td>
-      <%= link_to "編集", edit_address_path(name) %>  
-      <%= link_to "削除", addresses_path(name),method: :delete, "data-confirm" => "本当に消しますか？" %>
-        
-      </td>
-      
-    </tr>
-    
-  </tbody>
-  
-  <% end %>
-  
-</table>
