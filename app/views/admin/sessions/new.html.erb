@@ -1,27 +1,68 @@
 <%= render 'admin/customers/list', admins: @admins %>
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="container -a">
+  
+  <div class="row offset-1">
+  
+   <h2 class="col-md-3 mb-4 text-center -c">管理者ログイン</h2>
+   
+  </div> 
+  
+ <%= render "admin/shared/error_messages", resource: resource %>
+   
+  <div class="row offset-2 mt-3"> 
+  
+    
+  
+    <div class="col-8">
+      
+      
+     
+     
+  
+   
+    
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    
+     <div class="row">
+      <div class="field col-md-4">
+        <%= f.label :email, "メールアドレス" %>
+         </div>
+        <div class="col-md-8">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "-w"  %>
+      </div>
+    
+      <div class="field col-md-4 mt-2">
+        <%= f.label :password, "パスワード" %>
+      </div>
+      <div class="col-md-8 mt-2">
+        <%= f.password_field :password, autocomplete: "current-password", class: "-w" %>
+      </div>
+    
+      <!--< if devise_mapping.rememberable? %>-->
+      <!--  <div class="field col-md-12">-->
+      <!--    <= f.check_box :remember_me %>-->
+      <!--    <= f.label :remember_me %>-->
+      <!--  </div>-->
+      <!--< end %>-->
+    <div class="row offset-4 my-4">
+      <div class="actions col-md-8">
+        <%= f.submit "ログイン", class: "btn btn-primary px-5" %>
+      </div>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
+    
+    
+    <% end %>
+    
+      </div> 
+    
+    </div>
+    
   </div>
-<% end %>
+    
+
+    
+  
+</div>
+
 
 <%= render "admin/shared/links" %>

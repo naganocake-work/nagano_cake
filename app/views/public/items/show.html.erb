@@ -1,30 +1,63 @@
 <%= render 'public/customers/list', customers: @customers %>
-<table>
-  <tbody>
-    <tr>
-<% @genres.each do |genre| %>
-
-  <td><%= link_to genre.name, items_path(genre_name: genre.name) %></td>
-
-<% end %>
-    </tr>
-  </tbody>
-</table>
-
 <%= form_with model: @cart_item do |f| %>
+<div class="container mt-5">
 
-<%= image_tag @item.get_image(100,100) %>
+   <div class="row">
+  
+      <div class="col-md-3" >
+  
+        <%= render 'genre', items: @items %>
+  
+      </div>
+  
+    <div class="col-md-9">
+      
+      <div class="row col-md-12"> 
+  
+        
+        
+        
+        <div class="col-md-4">
+          
+          <%= image_tag @item.get_image(100,100), size: '230x150' %>
+        
+        </div>
+        
+        <div class="col-md-8">
+          
+          <h4 class="col-md-12 font-weight-bold"><%= @item.name %></h4>
+        
+          <p class="col-md-12"><%= @item.introduction %></p>
+        
+        <p class="col-md-12"><label class="font-weight-bold">￥<%= (@item.price * 1.1).floor %></label>(税込)</p>
+        
+         <% if customer_signed_in?%>  
+        
+          <%= f.hidden_field :item_id, :value => @item.id %>
+          
+          <%= f.hidden_field :customer_id, :value => current_customer.id %>
+          
+        <div class="row mt-5">
+            
+          <div class="col-md-3"><%= f.select :amount, *[1..10]%></div>
+          
+          <div class="col-md-5"><%= f.submit "カートに入れる", class: "btn btn-success" %></div>
+          
+        </div>
+        
+        <% end %>
+        
+        <% end %>
+        
+        </div>
+        
+      </div>
+  
+    </div>
+    
+  </div>
+  
+</div>
 
-<%= @item.introduction %>
 
-￥<%= (@item.price * 1.1).floor %>(税込)
 
-<%= f.select :amount, *[1..10] %>
-
-<%= f.hidden_field :item_id, :value => @item.id %>
-
-<%= f.hidden_field :customer_id, :value => current_customer.id %>
-
-<%= f.submit "カートに入れる" %>
-
-<% end %>

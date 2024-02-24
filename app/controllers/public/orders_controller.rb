@@ -13,9 +13,22 @@ class Public::OrdersController < ApplicationController
     
   end
   
+  def error
+  # confirmがPOSTメソッドの為リロードをした時errorアクションが起動
+    redirect_to new_order_path
+    
+  end
+  
   def confirm
     
-     @order = Order.new
+     if params[:order].present?
+       
+       @order = Order.new
+       
+     else
+      
+      return render :new
+     end
      
      @order.payment_method = params[:order][:payment_method]
      
@@ -58,6 +71,8 @@ class Public::OrdersController < ApplicationController
        @order.addressee_name = params[:order][:addressee_name]
        
      end   
+     
+
     
   end
   
@@ -95,6 +110,9 @@ class Public::OrdersController < ApplicationController
   end
 
   def complete
+      
+      
+      
   end
 
   def index

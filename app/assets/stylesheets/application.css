@@ -26,10 +26,52 @@
 }
 
 .main {
-  width: 1080px;
   margin: 0 auto;
 }
 
 .soft {
   margin-bottom: 15px;
+}
+
+.container {
+  max-width: 1300px;
+}
+
+.bg-secondary-subtle {
+  background-color: #f5f5f5;
+  width: 500px;
+  margin-right: 10%;
+}
+
+.pad{
+  padding-top: 10%;
+  padding-left: 5%;
+}
+.img-container {
+  object-fit: cover;
+}
+
+
+.-b{
+  text-align: right;
+}
+.col-md-1{
+  text-align: right;
+  padding: 0%;
+}
+.container .col-3 {
+  background-color: #dcdcdc;
+  text-align: center;
+  width: 500px;
+}
+.container .-c{
+  background-color: #dcdcdc;
+  text-align: center;
+}
+
+.-w{
+  width: 80%;
+}
+.amount{
+  width: 100%;
 }

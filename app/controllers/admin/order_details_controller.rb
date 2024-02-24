@@ -14,7 +14,7 @@ class Admin::OrderDetailsController < ApplicationController
         @order.update(order_status: "製作中" )
     end
    #  製作ステータスが全て製作完了の時発送準備中に変更
-    @order_details = @order.order_details.all
+    @order_details = @order.order_details
    #  totalとorder_totalを定義
     total = 0
     order_total = 0

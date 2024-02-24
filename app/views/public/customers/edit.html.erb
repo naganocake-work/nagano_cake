@@ -1,5 +1,165 @@
 <%= render 'public/customers/list', customers: @customers %>
 
+<%= form_with model: @customer, url: customers_information_path(@customer) do |f| %>
 
+<div class="container -a">
+  
+  <div class="main">
+    
+    <h2 class="col-3 mb-5">会員情報編集</h2>
+    
+        <% if @customer.errors.any? %>
+        
+          <div>
+            
+            <h2><%= @customer.errors.count %> 個のエラーが発生してます</h2>
+            
+            <ul>
+              
+              <% @customer.errors.full_messages.each do |message| %>
+              
+                <li><%= message %></li>
+                
+              <% end %>
+              
+            </ul>
+            
+          </div>
+          
+          <% end %>
+    
+    <div class="row">
+      
+      <div class="col-8">
+      
+        <div class="row">
+          
+          <div class="col-md-2">
+            
+           <%= f.label :last_name, "名前" %>
+           
+          </div>
+          
+          <div class="col-md-1">
+              
+             姓
+             
+          </div>
+          
+          <div class="col-md-3">
+             
+           <%= f.text_field :last_name %>
+          
+          </div>
+          
+          <div class="col-md-2 -b">
+            
+            名
+              
+          </div>
+           
+          <div class="col-md-3">
+             
+            <%= f.text_field :first_name %>
+           
+          </div>
+          
+          <div class="col-md-2">
+            
+            <%= f.label :last_name_kana, "フリガナ" %>
+            
+          </div>
+          
+          <div class="col-md-1">
+              
+            セイ
+            
+          </div>
+          
+          <div class="col-md-3">
+            
+            <%= f.text_field :last_name_kana %>
+            
+          </div>
+          
+          <div class="col-md-2 -b">
+            
+            メイ
+           
+          </div>
+           
+          <div class="col-md-3">
+            
+            <%= f.text_field :first_name_kana %>
+            
+          </div>
+          
+          <div class="field col-md-3">
+            
+            <%= f.label :email %>
+            
+          </div>
+          
+          <div class="field col-md-9">
+            
+              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+              
+          </div>
+          
+          <div class="col-md-3">
+          
+            <%= f.label :postal_code, "郵便番号" %>
+            
+          </div>
+          
+          <div class="col-md-9">
+            
+            <%= f.text_field :postal_code %>
+          
+          </div>
+          
+          <div class="col-md-3">
+            
+            <%= f.label :address, "住所" %>
+          
+          </div>
+          
+          <div class="col-md-9">
+            
+            <%= f.text_field :address %>
+          
+          </div>
+          
+          <div class="col-md-3">
+            
+            <%= f.label :telephone_number, "電話番号" %>
+          
+          </div>
+          
+          <div class="col-md-9">
+            
+            <%= f.text_field :telephone_number %>
+          
+          </div>
+           
+          <div class="actions offset-3 mt-3">
+            
+            <%= f.submit "変更内容を保存", class: "btn btn-info" %>
+            
+          </div>
+            
+          <div class="col-md-5 text-right mt-3"><%= link_to  "退会する", customers_confirm_path, class: "btn btn-danger" %></div>
+          
+        
+        </div>
+        
+      </div>
+  
+    </div>
 
-<div> <%= link_to  "退会", customers_confirm_path %></div>
+  </div>
+  
+</div>
+
+<% end %>
+

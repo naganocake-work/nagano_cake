@@ -1,28 +1,50 @@
-<div class="hedear">
 
-<div class="logo">logo</div>
-<% if admin_signed_in? %>
 
-<li> <%= link_to  "商品一覧", admin_items_path %></li>
-  <li> <%= link_to  "会員一覧", admin_customers_path %></li>
-  <li><%= link_to  "注文履歴一覧", admin_path %></li>
-  <li> <%= link_to  "ジャンル一覧", admin_genres_path %></li>
-　<li> <%= link_to  "ログアウト", destroy_admin_session_path %></li>
+
+
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+  <h5 class="my-0 mr-md-auto font-weight-normal">nagano cake</h5>
+   <% if admin_signed_in? %>
+   
+  <nav class="my-2 my-md-0 mr-md-3">
+   
+    <a class="p-2 text-dark"><%= link_to  "商品一覧", admin_items_path %></a>
+    <a class="p-2 text-dark" > <%= link_to  "会員一覧", admin_customers_path %></a>
+    <a class="p-2 text-dark" ><%= link_to  "注文履歴一覧", admin_path %></a>
+    <a class="p-2 text-dark" ><%= link_to  "ジャンル一覧", admin_genres_path %></a>
+    <a class="p-2 text-dark" ><%= link_to  "ログアウト", destroy_admin_session_path, method: :delete %></a>
+    
+    <div class="offset-6 mt-3">
+    <%= form_with url: admin_items_path, method: :get do |f| %>
+    <%= f.text_field :name,placeholder: "Search" %>
+    <%= f.submit "検索" %>
+    <% end %>
+
+    </div>
+    
+  </nav>
   
-<% else %>
-
-<li> <%= link_to  "About", about_path %></li>
-  <li> <%= link_to  "商品一覧", items_path %></li>
-  <li> <%= link_to  "新規登録", new_customer_registration_path %></li>
-  <li> <%= link_to  "ログイン", new_customer_session_path %></li>
-
+  <% else %>
   
+<nav class="my-2 my-md-0 mr-md-3">
+   
+    <a class="p-2 text-dark"> <%= link_to  "About", about_path %></a>
+    <a class="p-2 text-dark" > <%= link_to  "商品一覧", items_path %></a>
+    <a class="p-2 text-dark" > <%= link_to  "新規登録", new_customer_registration_path %></a>
+    <a class="p-2 text-dark" > <%= link_to  "ログイン", new_customer_session_path %></a>
+     <div class="offset-6 mt-3">
+  
+    <%= form_with url: admin_items_path, method: :get do |f| %>
+      <%= f.text_field :name %>
+    <%= f.submit "検索" %>
+    <% end %>
 
-<% end %>
+    </div>
+  </nav>
 
-<%= form_with url: admin_items_path, method: :get do |f| %>
-  <%= f.text_field :name %>
-<%= f.submit "検索" %>
 <% end %>
 
 </div>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
+

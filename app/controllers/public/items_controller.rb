@@ -8,6 +8,9 @@ def index
   else
     @items = Item.page(params[:page])
   end
+  
+  @genres = Genre.all
+  
 end
   
 

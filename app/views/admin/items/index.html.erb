@@ -1,41 +1,65 @@
 <%= render 'admin/customers/list', admins: @admins %>
-<h3>商品一覧</h3>
 
-<table>
-
-  <thead>
-
-    <tr>
-
-    <th>商品ID</th>
-    <th>商品名</th>
-    <th>税抜価格</th>
-    <th>ジャンル</th>
-    <th>ステータス</th>
-
-    </tr>
-
-  </thead>
-
-  <% @items.each do |item| %>
-
-  <tbody>
-
-    <tr>
-
-      <td><%= item.id %></td>
-      <td><%= link_to item.name, admin_item_path(item) %></td>
-      <td><%= item.price %>円</td>
-      <td><%= item.genre.name %></td>
-      <td><%= item.is_active ? "販売中" : "販売停止中" %></td>
-
-    </tr>
-
-  </tbody>
-
-  <% end %>
-
-<%= paginate @items %>
-
-
-</table>
+<div class="container">
+  
+  <div class="row">
+   
+    <h3 class="col-3 my-3">商品一覧</h3>
+    
+    <div class="col-9 my-3 text-right"><%= link_to "+" , new_admin_item_path, class: "btn btn-light btn-rounded btn-rounded" %></div>
+  
+  </div>
+  
+  <div class="row">
+  
+    <table class="table table-hover table-bordered col-md-12 mt-3">
+    
+      <thead>
+    
+        <tr class="table-active">
+    
+        <th>商品ID</th>
+        <th>商品名</th>
+        <th>税抜価格</th>
+        <th>ジャンル</th>
+        <th>ステータス</th>
+    
+        </tr>
+    
+      </thead>
+    
+      <% @items.each do |item| %>
+    
+      <tbody>
+    
+        <tr>
+    
+          <td><%= item.id %></td>
+          <td><%= link_to item.name, admin_item_path(item) %></td>
+          <td><%= item.price %>円</td>
+          <td><%= item.genre.name %></td>
+          <td><%= item.is_active ? "販売中" : "販売停止中" %></td>
+    
+        </tr>
+    
+      </tbody>
+    
+      <% end %>
+    
+    
+    
+    </table>
+    
+    <div class="row col-md-12">
+      
+      <div class="col-md-7 offset-5">
+        
+        <%= paginate @items %>
+        
+      </div>
+    
+    </div>
+    
+  </div>
+    
+</div>
